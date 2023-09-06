@@ -1,0 +1,223 @@
+[
+    {
+        "id": "d2c3b63cd6cdffa5",
+        "type": "tab",
+        "label": "TCP",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "afdec3bec866037e",
+        "type": "debug",
+        "z": "d2c3b63cd6cdffa5",
+        "name": "Debug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 650,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "f77fc08eac697187",
+        "type": "tcp in",
+        "z": "d2c3b63cd6cdffa5",
+        "name": "",
+        "server": "server",
+        "host": "localhost",
+        "port": "1234",
+        "datamode": "stream",
+        "datatype": "utf8",
+        "newline": "",
+        "topic": "",
+        "trim": false,
+        "base64": false,
+        "tls": "",
+        "x": 190,
+        "y": 220,
+        "wires": [
+            [
+                "64b4fc355e55794d"
+            ]
+        ]
+    },
+    {
+        "id": "64b4fc355e55794d",
+        "type": "function",
+        "z": "d2c3b63cd6cdffa5",
+        "name": "Convert To ASCII",
+        "func": "msg.payload = msg.payload.toString('ascii')\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 450,
+        "y": 220,
+        "wires": [
+            [
+                "d5b6a93b75b25e88",
+                "764eefa2252a4c7a",
+                "afdec3bec866037e"
+            ]
+        ]
+    },
+    {
+        "id": "35d0d84fdbb90355",
+        "type": "ui_gauge",
+        "z": "d2c3b63cd6cdffa5",
+        "name": "",
+        "group": "6dbcb52cbcddde39",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Thermocouple 1",
+        "label": "°C",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 900,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "dc1d958c47a5cccc",
+        "type": "tcp request",
+        "z": "d2c3b63cd6cdffa5",
+        "name": "",
+        "server": "localhost",
+        "port": "1234",
+        "out": "time",
+        "ret": "buffer",
+        "splitc": "0",
+        "newline": "",
+        "trim": false,
+        "tls": "",
+        "x": 190,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "354c283ff801112a",
+        "type": "comment",
+        "z": "d2c3b63cd6cdffa5",
+        "name": "Initialize TCP Server",
+        "info": "",
+        "x": 190,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "4c6c694ac08dc969",
+        "type": "comment",
+        "z": "d2c3b63cd6cdffa5",
+        "name": "Listen to TCP Server",
+        "info": "",
+        "x": 190,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "752f23c070b643a7",
+        "type": "ui_gauge",
+        "z": "d2c3b63cd6cdffa5",
+        "name": "",
+        "group": "6dbcb52cbcddde39",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Thermocouple 2",
+        "label": "°C",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 900,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "d5b6a93b75b25e88",
+        "type": "function",
+        "z": "d2c3b63cd6cdffa5",
+        "name": "Get Temp 1",
+        "func": "msg.payload = msg.payload.split(',')\nmsg.payload = parseFloat(msg.payload[0])\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 670,
+        "y": 220,
+        "wires": [
+            [
+                "35d0d84fdbb90355"
+            ]
+        ]
+    },
+    {
+        "id": "764eefa2252a4c7a",
+        "type": "function",
+        "z": "d2c3b63cd6cdffa5",
+        "name": "Get Temp 2",
+        "func": "msg.payload = msg.payload.split(',')\nmsg.payload = parseFloat(msg.payload[1])\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 670,
+        "y": 300,
+        "wires": [
+            [
+                "752f23c070b643a7"
+            ]
+        ]
+    },
+    {
+        "id": "6dbcb52cbcddde39",
+        "type": "ui_group",
+        "name": "Temperature (°C)",
+        "tab": "af826109dad7056c",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "af826109dad7056c",
+        "type": "ui_tab",
+        "name": "Temperature Monitoring",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
