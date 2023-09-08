@@ -59,7 +59,7 @@ For more information on the CM4 Maker Board, check out the resources here:
 * [CM4 Maker Board Resources](https://my.cytron.io/p-cm4-maker-board-and-kits#tab-resource)  
 
 ## Support  
-You can visit [Log Thermocouple Sensor Data to Google Sheets using CM4 Maker Board](https://cytron.io/tutorial/log-thermocouple-sensor-data-to-google-sheets-using-cm4-maker-board) to learn more about it. 
+You can visit [Node-RED on CM4 Maker Board: Displaying Thermocouple Sensor Data](https://cytron.io/tutorial/node-red-on-cm4-maker-board-displaying-thermocouple-sensor-data) to learn more about it. 
 
 If you need further assistance, we welcome you to our [technical forum](http://forum.cytron.io) or you can contact us through email support@cytron.io where our team will be happy to assist you. 
 
